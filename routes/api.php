@@ -60,7 +60,7 @@ Route::prefix('responders')->group(function () {
     });
 });
 
-Route::prefix('/hallo-velo')->group(function () {
+Route::prefix('hallo-velo')->group(function () {
     Route::get('/bikes', function () {
         return Bike::all();
     });
