@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\FarmController;
+use App\Http\Controllers\RelationSheepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -68,4 +71,31 @@ Route::prefix('hallo-velo')->group(function () {
     Route::get('/bikes/{id}', function (int $id) {
         return Bike::find($id);
     })->whereNumber('id');
+});
+
+Route::prefix('bookler')->controller(BookController::class)->group(function () {
+    Route::get('books', 'all');
+    Route::get('books/{id}', 'find');
+
+    Route::get('book-finder/slug/{slug}', 'findBySlug');
+    Route::get('book-finder/year/{year}', 'findByYear');
+    Route::get('book-finder/max-pages/{pages}', 'findByMaxPages');
+
+    Route::get('search/{search}', 'search');
+
+    Route::get('meta/count', 'count');
+    Route::get('meta/avg-pages', 'pages');
+
+    Route::get('dashboard', 'dashboard');
+});
+
+Route::prefix('relationsheep')->controller(RelationSheepController::class)->group(function () {
+    Route::get('posts', 'posts');
+    Route::get('topics/{slug}/posts', 'postsByTopic');
+});
+
+Route::prefix('ackerer')->controller(FarmController::class)->group(function () {
+    Route::get('plants', 'allPlants');
+    Route::get('plants/{slug}', 'findBySlug');
+    Route::get('farms', 'allFarms');
 });

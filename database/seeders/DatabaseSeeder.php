@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Author;
+use App\Models\Farm;
+use App\Models\Plant;
+use App\Models\Post;
+use App\Models\Topic;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        Author::factory(5)
+            ->create();
+        Topic::factory(10)
+            ->create();
+        Post::factory(100)
+            ->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Plant::factory(20)
+            ->has(Farm::factory())
+            ->create();
     }
 }
