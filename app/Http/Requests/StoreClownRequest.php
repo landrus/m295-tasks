@@ -35,6 +35,12 @@ class StoreClownRequest extends FormRequest
         return [
             'name.required' => 'The name is required',
             'description.required' => 'The description is required',
+            'rating.required' => 'The rating is required',
+            'rating.numeric' => 'The rating must be a number',
+            'rating.min' => 'The rating must be at least 1',
+            'rating.max' => 'The rating may not be greater than 5',
+            'status.required' => 'The status is required',
+            'status.boolean' => 'The status must be a boolean',
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Farm;
 use App\Models\Plant;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\User;
 use Database\Factories\PlantFactory;
 use Illuminate\Database\Seeder;
 
@@ -34,6 +35,9 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Clown::factory(10)
+            ->create();
+
+        User::factory(1)
             ->create();
     }
 }

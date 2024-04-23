@@ -6,7 +6,6 @@ use App\Http\Requests\StoreClownRequest;
 use App\Http\Resources\ClownResource;
 use App\Models\Clown;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class ClownController extends Controller {
 

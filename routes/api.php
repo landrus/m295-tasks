@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClownController;
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RelationSheepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,6 @@ use App\Models\Bike;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('responders')->group(function () {
    Route::get('/hi', function () {
        return 'Hallo Welt';
@@ -106,4 +103,16 @@ Route::prefix('r-rest-y')->controller(ClownController::class)->group(function ()
     Route::post('clowns', 'create');
     Route::put('clowns/{clown}', 'update')->whereNumber('id');
     Route::delete('clowns/{clown}', 'delete')->whereNumber('id');
+});
+
+Route::prefix('guardener')->group(function () {
+    Route::controller(LoginController::class)->group(function () {
+        Route::post('login', 'authenticate');
+        Route::get('auth', 'checkAuth')->middleware('auth:sanctum');
+        Route::get('logout', 'logout')->middleware('auth:sanctum');
+    });
+
+    Route::get('geheim', function () {
+        return response()->json(['location' => 'Ebikonerstrasse 75, Adligenswil']);
+    })->middleware('auth:sanctum');
 });
