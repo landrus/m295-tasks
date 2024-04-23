@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ClownController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\RelationSheepController;
 use Illuminate\Http\Request;
@@ -98,4 +99,11 @@ Route::prefix('ackerer')->controller(FarmController::class)->group(function () {
     Route::get('plants', 'allPlants');
     Route::get('plants/{slug}', 'findBySlug');
     Route::get('farms', 'allFarms');
+});
+
+Route::prefix('r-rest-y')->controller(ClownController::class)->group(function () {
+    Route::get('clowns', 'all');
+    Route::post('clowns', 'create');
+    Route::put('clowns/{clown}', 'update')->whereNumber('id');
+    Route::delete('clowns/{clown}', 'delete')->whereNumber('id');
 });

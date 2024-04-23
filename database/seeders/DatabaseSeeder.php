@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Author;
+use App\Models\Clown;
 use App\Models\Farm;
 use App\Models\Plant;
 use App\Models\Post;
@@ -30,6 +31,9 @@ class DatabaseSeeder extends Seeder
 
         Farm::factory(20)
             ->for(Plant::factory())
+            ->create();
+
+        Clown::factory(10)
             ->create();
     }
 }
